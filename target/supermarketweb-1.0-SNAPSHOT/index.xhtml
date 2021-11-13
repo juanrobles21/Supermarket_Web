@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>SUpermarket Web</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/plantilla.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <p:growl id="mensajes" sticky="true"/>
+                    <p:breadCrumb>
+                        <p:menuitem class="nav_bar" value="Inicio" icon="fa fa-home" action="/index.xhtml"/>
+                    </p:breadCrumb>
+                    <p:panel>
+                        <p:panelGrid columns="4">
+                            <p:outputLabel style="padding: 26px" value="#{'Person'}"/>
+                            <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="person/listar"/>
+                            <p:outputLabel  value="#{'Person person Type'}"/>
+                            <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="personPersonType/listar"/>
+                        </p:panelGrid>
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="#{'Product Type'}"/>
+                            <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="productType/listar"/>
+                        </p:panelGrid>
+                        <p:panelGrid columns="2">
+                            <p:outputLabel style="padding: 38px" value="#{'Tax'}"/>
+                            <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="tax/listar"/>
+                        </p:panelGrid>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+        <br />
+
+    </h:body>
+</html>
+

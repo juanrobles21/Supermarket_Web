@@ -1,0 +1,49 @@
+body {
+    background-color: #ffffff;
+    font-size: 12px;
+    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #000000;  
+    margin: 10px;
+}
+body .ui-button{
+    margin-left: 100px;
+    background: #045491;
+    border: 1px solid #045491;
+}
+body .ui-button.ui-state-hover{
+    background: white;
+    border-color: #045491;
+    color: #045491;
+}
+body .ui-panelgrid .ui-panelgrid-cell.ui-widget-header{
+    color:#045491;
+    font-weight: 900;    
+}
+
+h1 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    border-bottom: 1px solid #AFAFAF; 
+    font-size:  16px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    color: #4db852;
+}
+label {
+    font-weight: 900;
+}
+body td label .j_idt14:j_idt23{
+    padding: 31px;
+}
+
+
+a:link, a:visited {
+  color: #045491;
+  text-decoration: none;
+}
+
+a:link:hover, a:visited:hover  {
+  color: #045491;
+  font-weight : bold;
+  text-decoration : underline;
+}
