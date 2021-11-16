@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/plantilla.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <p:growl id="mensajes" sticky="true"/>
+                    <p:breadCrumb>
+                        <p:menuitem class="nav_bar" value="Inicio" icon="fa fa-home" action="/index.xhtml"/>
+                    </p:breadCrumb>
+                    <br/>
+                    <p:panel>
+                        <p:panelGrid columns="4">
+                            <f:facet name="header">#{'Crear Person Type'}</f:facet>
+                            <p:outputLabel value="#{'Nombre'}" for="nom"></p:outputLabel>
+                            <p:inputText id="nom" rendered="true" requiredMessage="Nombre del Tipo de persona es obligatorio" value="#{personTypeController.campo.personTypeName}" />
+                            <f:facet name="footer">
+                                <p:commandButton  id="btn" value="#{'Crear'}" ajax="false" action="#{personTypeController.grabarPersonType()}"/>
+                            </f:facet>
+                        </p:panelGrid>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+        <br />
+
+    </h:body>
+</html>
+

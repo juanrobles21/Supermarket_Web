@@ -78,7 +78,7 @@ public class TaxController {
     }
 
     //**********Interface Converter *********//
-    @FacesConverter(forClass = TaxEntity.class, value = "Taxonverter")
+    @FacesConverter(forClass = TaxEntity.class, value = "TaxConverter")
     public static class TaxControllerConverter implements Converter {
 
         @Override

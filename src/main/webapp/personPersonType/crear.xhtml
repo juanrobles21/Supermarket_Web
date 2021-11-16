@@ -21,7 +21,9 @@
                         <p:panelGrid columns="2">
                             <f:facet name="header">#{'Crear Person Person Type'}</f:facet>
                             <p:outputLabel value="#{'Fk Person Type'}"></p:outputLabel>
-                            <p:selectOneMenu id="c" value="#{personPersonTypeController.campo.personTypeEntity}" style="width:150px"></p:selectOneMenu>
+                            <p:selectOneMenu id="PersonType" value="#{personPersonTypeController.campo.personTypeEntity}" style="width:150px"></p:selectOneMenu>
+                            <p:outputLabel value="#{'Fk Person'}"></p:outputLabel>
+                            <p:selectOneMenu id="Person" value="#{personPersonTypeController.campo.personEntity}" style="width:150px"></p:selectOneMenu>
                             <f:facet name="footer">
                                 <p:commandButton id="btn" value="#{'Crear'}" ajax="false" action="#{personPersonTypeController.grabarPersonPersonType()}"/>
                             </f:facet>

@@ -80,8 +80,8 @@ public class PersonController {
     }
     //**********Interface Converter *********//
 
-    @FacesConverter(forClass = PersonEntity.class, value = "Persononverter")
-    public static class TaxControllerConverter implements Converter {
+    @FacesConverter(forClass = PersonEntity.class, value = "PersonConverter")
+    public static class PersonControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext context, UIComponent componet, String value) {
