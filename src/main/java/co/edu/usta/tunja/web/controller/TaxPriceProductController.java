@@ -10,6 +10,7 @@ import co.edu.usta.tunja.supermarket.persistence.entity.TaxPriceProductEntity;
 import co.edu.usta.tunja.web.utility.Forms;
 import co.edu.usta.tunja.web.utility.Mensajes;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.el.ELContext;
 import javax.enterprise.context.RequestScoped;
@@ -32,21 +33,39 @@ public class TaxPriceProductController {
     @EJB
     private TaxPriceProductFacade _ejbFacade;
     private TaxPriceProductEntity _objActual;
+    private Integer fkIdPriceProduct;
+    private Integer fkIdTax;
 
     public TaxPriceProductController() {
     }
 
-    public  TaxPriceProductEntity getCampo() {
+    public Integer getFkIdPriceProduct() {
+        return fkIdPriceProduct;
+    }
+
+    public void setFkIdPriceProduct(Integer fkIdPriceProduct) {
+        this.fkIdPriceProduct = fkIdPriceProduct;
+    }
+
+    public Integer getFkIdTax() {
+        return fkIdTax;
+    }
+
+    public void setFkIdTax(Integer fkIdTax) {
+        this.fkIdTax = fkIdTax;
+    }
+
+    public TaxPriceProductEntity getCampo() {
         if (this._objActual == null)
         {
-            this._objActual = new  TaxPriceProductEntity();
+            this._objActual = new TaxPriceProductEntity();
 
         }
         return this._objActual;
 
     }
 
-    public  TaxPriceProductFacade getFacade() {
+    public TaxPriceProductFacade getFacade() {
         return this._ejbFacade;
     }
 
@@ -64,17 +83,69 @@ public class TaxPriceProductController {
         try
         {
             texto = "exito";
+            detalle = "Exito";
+            this._objActual.setFkIdPriceProduct(getFkIdPriceProduct());
+            this._objActual.setFkIdTax(getFkIdTax());
             //detalle = ResourceBundle.getBundle("/co/edu/usta/tunja/web/utility/txtsupermarket").getString(texto);
             getFacade().grabar(this._objActual);
-            Mensajes.exito(texto, "Exito");
-            return "crear";
+            Mensajes.exito(texto, detalle);
+            return "listar";
         } catch (Exception e)
         {
             texto = "Error";
+            detalle = "Error";
             e.printStackTrace();
-            //Mensajes.error(texto, detalle);
+            Mensajes.error(texto, detalle);
             return "crear";
 
+        }
+    }
+
+    public String cargarID(Integer id) {
+        _objActual = getFacade().buscar(id);
+        Map<String, Object> sesionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        sesionMap.put("taxPriceProduct", _objActual);
+        return "actualizar";
+    }
+
+    public String actualizarPersonPersonType() {
+        String texto, detail;
+        try
+        {
+            texto = "Actualizado con exito";
+            this._objActual.setFkIdPriceProduct(getFkIdPriceProduct());
+            this._objActual.setFkIdTax(getFkIdTax());;
+            detail = "Actualizado";
+            Map<String, Object> sesionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+            _objActual.setId(((TaxPriceProductEntity) sesionMap.get("taxPriceProduct")).getId());
+            getFacade().actualizar(_objActual);
+            Mensajes.exito(texto, detail);
+            return "listar";
+        } catch (Exception e)
+        {
+            texto = "Error";
+            detail = "Error";
+            Mensajes.error(texto, detail);
+            return "actualizar";
+        }
+    }
+
+    public String deleteTaxPriceProduct(TaxPriceProductEntity taxPriceProductEntity) {
+        this._objActual = taxPriceProductEntity;
+        String text, detail;
+        try
+        {
+            text = "Eliminado con exito";
+            detail = "Eliminado";
+            Mensajes.exito(text, detail);
+            getFacade().borrar(this._objActual);
+            return "listar";
+        } catch (Exception e)
+        {
+            text = "No puede ser eliminado";
+            detail = e.getMessage();
+            Mensajes.error(text, detail);
+            return "listar";
         }
     }
     //**********Interface Converter *********//
@@ -110,5 +181,5 @@ public class TaxPriceProductController {
             return null;
         }
     }
-    
+
 }

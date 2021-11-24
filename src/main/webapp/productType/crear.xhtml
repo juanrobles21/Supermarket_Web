@@ -12,22 +12,19 @@
         <ui:composition template="/plantilla.xhtml">
             <ui:define name="content">
                 <h:form>
-                    <p:growl id="mensajes" sticky="true"/>
-                    <p:breadCrumb>
-                        <p:menuitem class="nav_bar" value="Inicio" icon="fa fa-home" action="/index.xhtml"/>
-                    </p:breadCrumb>
-                    <br/>
                     <p:panel>
-                        <p:panelGrid columns="2">
-                            <f:facet name="header">#{'Crear Product Type'}</f:facet>
-                            <p:outputLabel value="#{'Nombre'}" for="nom"></p:outputLabel>
-                            <p:inputText id="nom" rendered="true" requiredMessage="Nombre del tipo de producto es obligatorio" value="#{productTypeController.campo.productTypeName}" />
+                        <div style="margin-left: 486px">
+                            <p:panelGrid columns="2">
+                                <f:facet name="header">#{'Crear Product Type'}</f:facet>
+                                <p:outputLabel value="#{'Nombre'}" for="nom"></p:outputLabel>
+                                <p:inputText id="nom" rendered="true" requiredMessage="Nombre del tipo de producto es obligatorio" value="#{productTypeController.campo.productTypeName}" />
 
-                            <f:facet name="footer">
-                                <p:commandButton id="btn" value="#{'Crear'}" ajax="false" action="#{productTypeController.grabarProductType()}"/>
-                            </f:facet>
+                                <f:facet name="footer">
+                                    <p:commandButton style="margin-left: 118px" id="btn" value="Crear" ajax="false" action="#{productTypeController.grabarProductType()}"/>
+                                </f:facet>
 
-                        </p:panelGrid>
+                            </p:panelGrid>
+                        </div>
                     </p:panel>
                 </h:form>
             </ui:define>

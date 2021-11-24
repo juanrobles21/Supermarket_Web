@@ -28,12 +28,16 @@
                                     #{registros.amount}
                             </p:column>
                             <p:column style="width: 10%">
-                                <f:facet name="header">Price</f:facet>
+                                <f:facet name="header">Fk Price</f:facet>
                                     #{registros.taxPriceProductEntity.priceProductEntity.salePrice}
                             </p:column>
                             <p:column style="width: 10%">
-                                <f:facet name="header">Tax</f:facet>
+                                <f:facet name="header">Fk Ticket</f:facet>
                                     #{registros.taxPriceProductEntity.taxEntity.taxValue}
+                            </p:column>
+                            <p:column style="width: 10%">
+                                <f:facet name="header">Fk Administrator</f:facet>
+                                    #{registros.personEntityAdministrator.name}
                             </p:column>
                             <p:column style="width: 10%">
                                 <f:facet name="header">Total</f:facet>
@@ -41,17 +45,15 @@
                             </p:column>
                             <p:column style="width: 20%">
                                 <f:facet name="header">Acción</f:facet>
-                                <p:commandButton style="margin-left: 0px" id="btn" value="#{'Actualizar'}" ajax="false" action="#{productTypeController.grabarProductType()}"/>
-                                <p:commandButton style="margin-left: 0px" type="button" value="Eliminar" ajax="false" styleClass="ui-button-danger" action="#{productTypeController.eliminarProductType(registros.id)}" />
+                                <p:commandButton style="margin-left: 0px" id="btn" value="Actualizar" ajax="false" action="#{ticketDetailController.cargarID(registros.id)}"/>
+                                <p:commandButton style="margin-left: 0px" type="btn" value="Eliminar" ajax="false" styleClass="ui-button-danger" action="#{ticketDetailController.deleteTicketDetail(registros)}"/>
                             </p:column>
-
                         </p:dataTable>
                     </p:panel>
                 </h:form>
             </ui:define>
         </ui:composition>
         <br />
-
     </h:body>
 </html>
 

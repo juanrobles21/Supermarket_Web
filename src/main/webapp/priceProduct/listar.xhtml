@@ -47,10 +47,10 @@
                                 <f:facet name="header">Provider </f:facet>
                                     #{registros.productProviderEntity.providerEntity.name}
                             </p:column>
-                            <p:column style="width: 30%">
+                            <p:column style="width: 40%">
                                 <f:facet name="header">Acción</f:facet>
-                                <p:commandButton style="margin-left: 0px" id="btn" value="#{'Actualizar'}" ajax="false" action="#{productTypeController.grabarProductType()}"/>
-                                <p:commandButton style="margin-left: 0px" type="button" value="Eliminar" ajax="false" styleClass="ui-button-danger" action="#{productTypeController.eliminarProductType(registros.id)}" />
+                                <p:commandButton style="margin-left: 0px" id="btn" value="Actualizar" ajax="false" action="#{priceProductController.cargarID(registros.id)}"/>
+                                <p:commandButton style="margin-left: 0px" type="btn" value="Eliminar" ajax="false" styleClass="ui-button-danger" action="#{priceProductController.deletePriceProduct(registros)}"/>
                             </p:column>
 
                         </p:dataTable>

@@ -12,12 +12,8 @@
         <ui:composition template="/plantilla.xhtml">
             <ui:define name="content">
                 <h:form>
-                    <p:growl id="mensajes" sticky="true"/>
-                    <p:breadCrumb>
-                        <p:menuitem class="nav_bar" value="Inicio" icon="fa fa-home" action="/index.xhtml"/>
-                    </p:breadCrumb>
-                    <br/>
                     <p:panel>
+                        <div style="margin-left: 340px">
                         <p:panelGrid columns="4">
                             <f:facet name="header">#{'Crear Person'}</f:facet>
                             <p:outputLabel value="#{'Nombre'}" for="nom"></p:outputLabel>
@@ -31,10 +27,11 @@
                             <p:outputLabel value="#{'Apellido'}" for="nom"></p:outputLabel>
                             <p:inputText id="lastName" rendered="true" requiredMessage="Nombre de la persona es obligatorio" value="#{personController.campo.lastName}" />
                             <f:facet name="footer">
-                                <p:commandButton  id="btn" value="#{'Crear'}" ajax="false" action="#{personController.grabarPerson()}"/>
+                                <p:commandButton style="margin-left: 270px"  id="btn" value="#{'Crear'}" ajax="false" action="#{personController.grabarPerson()}"/>
                             </f:facet>
 
                         </p:panelGrid>
+                        </div>
                     </p:panel>
                 </h:form>
             </ui:define>

@@ -12,20 +12,17 @@
         <ui:composition template="/plantilla.xhtml">
             <ui:define name="content">
                 <h:form>
-                    <p:growl id="mensajes" sticky="true"/>
-                    <p:breadCrumb>
-                        <p:menuitem class="nav_bar" value="Inicio" icon="fa fa-home" action="/index.xhtml"/>
-                    </p:breadCrumb>
-                    <br/>
                     <p:panel>
-                        <p:panelGrid columns="4">
-                            <f:facet name="header">#{'Crear Person Type'}</f:facet>
-                            <p:outputLabel value="#{'Nombre'}" for="nom"></p:outputLabel>
-                            <p:inputText id="nom" rendered="true" requiredMessage="Nombre del Tipo de persona es obligatorio" value="#{personTypeController.campo.personTypeName}" />
-                            <f:facet name="footer">
-                                <p:commandButton  id="btn" value="#{'Crear'}" ajax="false" action="#{personTypeController.grabarPersonType()}"/>
-                            </f:facet>
-                        </p:panelGrid>
+                        <div style="margin-left:480px">
+                            <p:panelGrid columns="4">
+                                <f:facet name="header">#{'Crear Person Type'}</f:facet>
+                                <p:outputLabel value="#{'Nombre'}" for="nom"></p:outputLabel>
+                                <p:inputText id="nom" rendered="true" requiredMessage="Nombre del Tipo de persona es obligatorio" value="#{personTypeController.campo.personTypeName}" />
+                                <f:facet name="footer">
+                                    <p:commandButton style="margin-left: 115px" id="btn" value="#{'Crear'}" ajax="false" action="#{personTypeController.grabarPersonType()}"/>
+                                </f:facet>
+                            </p:panelGrid>
+                        </div>
                     </p:panel>
                 </h:form>
             </ui:define>

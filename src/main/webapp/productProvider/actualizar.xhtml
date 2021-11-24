@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/plantilla.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <p:panel>
+                        <div style="margin-left: 250px">
+                            <p:panelGrid columns="4">
+                                <f:facet name="header">#{'Actualizar Product Provider'}</f:facet>
+                                <p:outputLabel value="#{'Stock'}" for="nom"></p:outputLabel>
+                                <p:inputText id="nom" rendered="true" requiredMessage="Stock de la Product Provider es obligatorio" value="#{productProviderController.campo.stock}" />
+                                <p:outputLabel value="#{'Bar Code'}" for="nom"></p:outputLabel>
+                                <p:inputText id="barCode" rendered="true" requiredMessage="Bar cdoe de la Product Provider es obligatorio" value="#{productProviderController.campo.barCode}" />
+                                <p:outputLabel value="Fk product" for="@next"/>
+                                <h:selectOneMenu  value="#{productProviderController.fkIdProduct}" id="product">
+                                    <f:selectItems value="#{productController.productListado}" var="list"
+                                                   itemLabel="#{list.productName}" itemValue="#{list.id}" />
+                                </h:selectOneMenu>
+                                <p:outputLabel value="Fk provider" for="@next"/>
+                                <h:selectOneMenu  value="#{productProviderController.fkIdProvider}" id="provider">
+                                    <f:selectItems value="#{providerController.providerListado}" var="list"
+                                                   itemLabel="#{list.name}" itemValue="#{list.id}" />
+                                </h:selectOneMenu>
+
+                                <f:facet name="footer">
+                                    <p:commandButton style="margin-left: 335px"  id="btn" value="Actualizar" ajax="false" action="#{productProviderController.actualizarProductProvider()}"/>
+                                </f:facet>
+
+                            </p:panelGrid>
+                        </div>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+        <br />
+
+    </h:body>
+</html>
+
+

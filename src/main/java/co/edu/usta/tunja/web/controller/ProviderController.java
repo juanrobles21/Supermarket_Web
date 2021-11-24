@@ -10,6 +10,7 @@ import co.edu.usta.tunja.supermarket.persistence.entity.ProviderEntity;
 import co.edu.usta.tunja.web.utility.Forms;
 import co.edu.usta.tunja.web.utility.Mensajes;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.el.ELContext;
 import javax.enterprise.context.RequestScoped;
@@ -28,12 +29,14 @@ import javax.inject.Named;
 @Named(value = "providerController")
 @RequestScoped
 public class ProviderController {
+
     @EJB
     private ProviderFacade _ejbFacade;
     private ProviderEntity _objActual;
 
     public ProviderController() {
     }
+
     public ProviderEntity getCampo() {
         if (this._objActual == null)
         {
@@ -65,7 +68,7 @@ public class ProviderController {
             //detalle = ResourceBundle.getBundle("/co/edu/usta/tunja/web/utility/txtsupermarket").getString(texto);
             getFacade().grabar(this._objActual);
             Mensajes.exito(texto, "Exito");
-            return "crear";
+            return "listar";
         } catch (Exception e)
         {
             texto = "Error";
@@ -73,6 +76,53 @@ public class ProviderController {
             //Mensajes.error(texto, detalle);
             return "crear";
 
+        }
+    }
+        public String cargarID(Integer id) {
+        _objActual = getFacade().buscar(id);
+        Map<String, Object> sesionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        sesionMap.put("provider", _objActual);
+        return "actualizar";
+    }
+
+    public String actualizarProvider() {
+
+        String texto, detail;
+        try
+        {
+            texto = "Actualizado con exito";
+
+            detail = "Actualizado";
+            Map<String, Object> sesionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+            _objActual.setId(((ProviderEntity) sesionMap.get("provider")).getId());
+            getFacade().actualizar(_objActual);
+            Mensajes.exito(texto, detail);
+            return "listar";
+        } catch (Exception e)
+        {
+            texto = "Error";
+            detail = "Error";
+            Mensajes.error(texto, detail);
+            return "actualizar";
+        }
+    }
+
+    public String deleteProvider(ProviderEntity providerEntity) {
+        this._objActual = providerEntity;
+        String text, detail;
+        try
+        {
+            text = "Eliminado con exito";
+            detail = "Eliminado";
+            Mensajes.exito(text, detail);
+            getFacade().borrar(this._objActual);
+            return "listar";
+        } catch (Exception e)
+        {
+            text = "No puede ser eliminado";
+            detail = e.getMessage();
+            Mensajes.error(text, detail);
+            return "listar";
         }
     }
     //**********Interface Converter *********//
@@ -108,5 +158,5 @@ public class ProviderController {
             return null;
         }
     }
-    
+
 }

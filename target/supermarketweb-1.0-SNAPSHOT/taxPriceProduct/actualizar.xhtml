@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/plantilla.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <p:panel>
+                        <div style="margin-left: 360px">
+                            <p:panelGrid columns="2">
+                                <f:facet name="header">#{'Actualizar Tax Price Product'}</f:facet>
+                                <p:outputLabel value="Fk Price Product" for="@next"/>
+                                <h:selectOneMenu  value="#{taxPriceProductController.fkIdPriceProduct}" id="priceProduct">
+                                    <f:selectItems value="#{productController.productListado}" var="list"
+                                                   itemLabel="#{list.productName}" itemValue="#{list.id}" />
+                                </h:selectOneMenu>
+                                <p:outputLabel value="Fk Tax" for="@next"/>
+                                <h:selectOneMenu  value="#{taxPriceProductController.fkIdTax}" id="tax">
+                                    <f:selectItems value="#{taxController.taxListado}" var="list"
+                                                   itemLabel="#{list.taxName}" itemValue="#{list.id}" />
+                                </h:selectOneMenu>
+                                <f:facet name="footer">
+                                    <p:commandButton style="margin-left: 250px"  id="btn" value="Actualizar" ajax="false" action="#{taxPriceProductController.actualizarPersonPersonType()}"/>
+                                </f:facet>
+                            </p:panelGrid>
+                        </div>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+        <br />
+
+    </h:body>
+</html>

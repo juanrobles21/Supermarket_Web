@@ -33,8 +33,8 @@
                             </p:column>
                             <p:column style="width: 20%">
                                 <f:facet name="header">Acción</f:facet>
-                                <p:commandButton style="margin-left: 0px" id="btn" value="#{'Actualizar'}" ajax="false" action="#"/>
-                                <p:commandButton style="margin-left: 0px" type="button" value="Eliminar" ajax="false" styleClass="ui-button-danger" action="#" />
+                                <p:commandButton style="margin-left: 0px" id="btn" value="Actualizar" ajax="false" action="#{productController.cargarID(registros.id)}"/>
+                                <p:commandButton style="margin-left: 0px" type="btn" value="Eliminar" ajax="false" styleClass="ui-button-danger" action="#{productController.deleteProduct(registros)}"/>
                             </p:column>
 
                         </p:dataTable>
@@ -46,4 +46,3 @@
 
     </h:body>
 </html>
-

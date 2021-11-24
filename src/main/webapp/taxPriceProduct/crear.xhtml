@@ -12,23 +12,25 @@
         <ui:composition template="/plantilla.xhtml">
             <ui:define name="content">
                 <h:form>
-                    <p:growl id="mensajes" sticky="true"/>
-                    <p:breadCrumb>
-                        <p:menuitem class="nav_bar" value="Inicio" icon="fa fa-home" action="/index.xhtml"/>
-                    </p:breadCrumb>
-                    <br/>
                     <p:panel>
-                        <p:panelGrid columns="2">
-                            <f:facet name="header">#{'Crear Tax Price Product'}</f:facet>
-                            <p:outputLabel value="#{'Fk Price Product'}"></p:outputLabel>
-                            <p:selectOneMenu id="PriceProduct" value="#{taxPriceProductController.campo.priceProductEntity.productProviderEntity.productEntity.productName}" style="width:150px"></p:selectOneMenu>
-                            <p:outputLabel value="#{'Fk Tax'}"></p:outputLabel>
-                            <p:selectOneMenu id="Person" value="#{taxPriceProductController.campo.taxEntity.taxName}" style="width:150px"></p:selectOneMenu>
-                            <f:facet name="footer">
-                                <p:commandButton id="btn" value="#{'Crear'}" ajax="false" action="#{personPersonTypeController.grabarPersonPersonType()}"/>
-                            </f:facet>
-
-                        </p:panelGrid>
+                        <div style="margin-left: 360px">
+                            <p:panelGrid columns="2">
+                                <f:facet name="header">#{'Crear Tax Price Product'}</f:facet>
+                                <p:outputLabel value="Fk Price Product" for="@next"/>
+                                <h:selectOneMenu  value="#{taxPriceProductController.fkIdPriceProduct}" id="priceProduct">
+                                    <f:selectItems value="#{productController.productListado}" var="list"
+                                                   itemLabel="#{list.productName}" itemValue="#{list.id}" />
+                                </h:selectOneMenu>
+                                <p:outputLabel value="Fk Tax" for="@next"/>
+                                <h:selectOneMenu  value="#{taxPriceProductController.fkIdTax}" id="tax">
+                                    <f:selectItems value="#{taxController.taxListado}" var="list"
+                                                   itemLabel="#{list.taxName}" itemValue="#{list.id}" />
+                                </h:selectOneMenu>
+                                <f:facet name="footer">
+                                    <p:commandButton style="margin-left: 250px"  id="btn" value="Crear" ajax="false" action="#{taxPriceProductController.grabarTaxPriceProduct()}"/>
+                                </f:facet>
+                            </p:panelGrid>
+                        </div>
                     </p:panel>
                 </h:form>
             </ui:define>

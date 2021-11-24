@@ -12,27 +12,31 @@
         <ui:composition template="/plantilla.xhtml">
             <ui:define name="content">
                 <h:form>
-                    <p:growl id="mensajes" sticky="true"/>
-                    <p:breadCrumb>
-                        <p:menuitem class="nav_bar" value="Inicio" icon="fa fa-home" action="/index.xhtml"/>
-                    </p:breadCrumb>
-                    <br/>
                     <p:panel>
-                        <p:panelGrid columns="4">
-                            <f:facet name="header">#{'Crear Product Provider'}</f:facet>
-                            <p:outputLabel value="#{'Stock'}" for="nom"></p:outputLabel>
-                            <p:inputNumber id="nom" rendered="true" requiredMessage="Stock de la Product Provider es obligatorio" value="#{productProviderController.campo.stock}" />
-                            <p:outputLabel value="#{'Bar Code'}" for="nom"></p:outputLabel>
-                            <p:inputText id="barCode" rendered="true" requiredMessage="Bar cdoe de la Product Provider es obligatorio" value="#{productProviderController.campo.barCode}" />
-                            <p:outputLabel value="#{'Fk Product'}"></p:outputLabel>
-                            <p:selectOneMenu id="product" value="#{productProviderController.campo.productEntity.productName}" style="width:150px"></p:selectOneMenu>
-                            <p:outputLabel value="#{'Fk Provider'}"></p:outputLabel>
-                            <p:selectOneMenu id="provider" value="#{productProviderController.campo.providerEntity.name}" style="width:150px"></p:selectOneMenu>
-                            <f:facet name="footer">
-                                <p:commandButton  id="btn" value="#{'Crear'}" ajax="false" action="#{personController.grabarPerson()}"/>
-                            </f:facet>
+                        <div style="margin-left: 250px">
+                            <p:panelGrid columns="4">
+                                <f:facet name="header">#{'Crear Product Provider'}</f:facet>
+                                <p:outputLabel value="#{'Stock'}" for="nom"></p:outputLabel>
+                                <p:inputText id="nom" rendered="true" requiredMessage="Stock de la Product Provider es obligatorio" value="#{productProviderController.campo.stock}" />
+                                <p:outputLabel value="#{'Bar Code'}" for="nom"></p:outputLabel>
+                                <p:inputText id="barCode" rendered="true" requiredMessage="Bar cdoe de la Product Provider es obligatorio" value="#{productProviderController.campo.barCode}" />
+                                <p:outputLabel value="Fk product" for="@next"/>
+                                <h:selectOneMenu  value="#{productProviderController.fkIdProduct}" id="product">
+                                    <f:selectItems value="#{productController.productListado}" var="list"
+                                                   itemLabel="#{list.productName}" itemValue="#{list.id}" />
+                                </h:selectOneMenu>
+                                <p:outputLabel value="Fk provider" for="@next"/>
+                                <h:selectOneMenu  value="#{productProviderController.fkIdProvider}" id="provider">
+                                    <f:selectItems value="#{providerController.providerListado}" var="list"
+                                                   itemLabel="#{list.name}" itemValue="#{list.id}" />
+                                </h:selectOneMenu>
 
-                        </p:panelGrid>
+                                <f:facet name="footer">
+                                    <p:commandButton style="margin-left: 335px" id="btn" value="Crear" ajax="false" action="#{productProviderController.grabarProductProvider()}"/>
+                                </f:facet>
+
+                            </p:panelGrid>
+                        </div>
                     </p:panel>
                 </h:form>
             </ui:define>

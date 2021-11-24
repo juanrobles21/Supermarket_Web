@@ -12,31 +12,30 @@
         <ui:composition template="/plantilla.xhtml">
             <ui:define name="content">
                 <h:form>
-                    <p:growl id="mensajes" sticky="true"/>
-                    <p:breadCrumb>
-                        <p:menuitem class="nav_bar" value="Inicio" icon="fa fa-home" action="/index.xhtml"/>
-                    </p:breadCrumb>
-                    <br/>
                     <p:panel>
-                        <p:panelGrid columns="4">
-                            <f:facet name="header">#{'Crear Price Product'}</f:facet>
-                            <p:outputLabel value="#{'Sale Price'}" for="nom"></p:outputLabel>
-                            <p:inputText id="nom" rendered="true" requiredMessage="Nombre de la persona es obligatorio" value="#{priceProductController.campo.salePrice}" />
-                            <p:outputLabel value="#{'Shop price'}" for="nom"></p:outputLabel>
-                            <p:inputText id="shopPrice" rendered="true" requiredMessage="Email de la persona es obligatorio" value="#{priceProductController.campo.shopPrice}" />
-                            <p:outputLabel value="#{'Start Date'}" for="nom"></p:outputLabel>
-                            <p:calendar id="startDate" value="#{priceProductController.campo.startDate}" pattern="dd/MM/yyyy"/>                            
-                            <p:outputLabel value="#{'User Update'}" for="nom"></p:outputLabel>
-                            <p:inputText id="userUpdate" rendered="true" requiredMessage="DNI de la persona es obligatorio" value="#{priceProductController.campo.userUpdate}" />
-                            <p:outputLabel value="#{'Date Update'}" for="nom"></p:outputLabel>
-                            <p:calendar id="dateUpdate" value="#{priceProductController.campo.dateUpdate}" pattern="dd/MM/yyyy"/>                            
-                            <p:outputLabel value="#{'Fk product provider'}"></p:outputLabel>
-                            <p:selectOneMenu id="productProvider" value="#{priceProductController.campo.productProviderEntity.providerEntity.name}" style="width:150px"></p:selectOneMenu>
-                            <f:facet name="footer">
-                                <p:commandButton  id="btn" value="#{'Crear'}" ajax="false" action="#{personController.grabarPerson()}"/>
-                            </f:facet>
+                        <div style="margin-left: 260px">
+                            <p:panelGrid columns="4">
+                                <f:facet name="header">#{'Crear Price Product'}</f:facet>
+                                <p:outputLabel value="#{'Sale Price'}" for="nom"></p:outputLabel>
+                                <p:inputText id="nom" rendered="true" requiredMessage="Nombre de la persona es obligatorio" value="#{priceProductController.campo.salePrice}" />
+                                <p:outputLabel value="#{'Shop price'}" for="nom"></p:outputLabel>
+                                <p:inputText id="shopPrice" rendered="true" requiredMessage="Email de la persona es obligatorio" value="#{priceProductController.campo.shopPrice}" />
+                                <p:outputLabel value="#{'Start Date'}" for="nom"></p:outputLabel>
+                                <p:calendar id="startDate" value="#{priceProductController.campo.startDate}" pattern="dd/MM/yyyy"/>                            
+                                <p:outputLabel value="#{'User Update'}" for="nom"></p:outputLabel>
+                                <p:inputText id="userUpdate" rendered="true" requiredMessage="DNI de la persona es obligatorio" value="#{priceProductController.campo.userUpdate}" />
+                                <p:outputLabel value="#{'Date Update'}" for="nom"></p:outputLabel>
+                                <p:calendar id="dateUpdate" value="#{priceProductController.campo.dateUpdate}" pattern="dd/MM/yyyy"/>                            
+                                <p:outputLabel value="Fk Provider" for="@next"/>
+                                <h:selectOneMenu  value="#{priceProductController.fkIdProductProvider}" id="provider">
+                                    <f:selectItems value="#{providerController.providerListado}" var="list"
+                                                   itemLabel="#{list.name}" itemValue="#{list.id}" />
+                                </h:selectOneMenu><f:facet name="footer">
+                                    <p:commandButton style="margin-left: 350px" id="btn" value="#{'Crear'}" ajax="false" action="#{priceProductController.grabarPriceProduct()}"/>
+                                </f:facet>
 
-                        </p:panelGrid>
+                            </p:panelGrid>
+                        </div>
                     </p:panel>
                 </h:form>
             </ui:define>

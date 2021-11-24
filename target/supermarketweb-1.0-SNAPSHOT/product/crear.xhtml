@@ -12,23 +12,23 @@
         <ui:composition template="/plantilla.xhtml">
             <ui:define name="content">
                 <h:form>
-                    <p:growl id="mensajes" sticky="true"/>
-                    <p:breadCrumb>
-                        <p:menuitem class="nav_bar" value="Inicio" icon="fa fa-home" action="/index.xhtml"/>
-                    </p:breadCrumb>
-                    <br/>
                     <p:panel>
-                        <p:panelGrid columns="2">
-                            <f:facet name="header">#{'Crear Product'}</f:facet>
-                            <p:outputLabel value="#{'Product Name'}" for="nom"></p:outputLabel>
-                            <p:inputText id="nom" rendered="true" requiredMessage="Nombre de la producto es obligatorio" value="#{productController.campo.productName}" />
-                            <p:outputLabel value="#{'Fk Product Type'}"></p:outputLabel>
-                            <p:selectOneMenu id="productType" value="#{productController.campo.productTypeEntity.productTypeName}" style="width:150px"></p:selectOneMenu>
-                            <f:facet name="footer">
-                                <p:commandButton id="btn" value="#{'Crear'}" ajax="false" action="#{productController.grabarProduct()}"/>
-                            </f:facet>
+                        <div style="margin-left: 340px">
+                            <p:panelGrid columns="4">
+                                <f:facet name="header">#{'Crear Product'}</f:facet>
+                                <p:outputLabel value="#{'Product Name'}" for="nom"></p:outputLabel>
+                                <p:inputText id="nom" rendered="true" requiredMessage="Nombre de la producto es obligatorio" value="#{productController.campo.productName}" />
+                                <p:outputLabel value="Person" for="@next"/>
+                                <h:selectOneMenu  value="#{productController.fkId}" id="productType">
+                                    <f:selectItems value="#{productTypeController.productTypeListado}" var="list"
+                                                   itemLabel="#{list.productTypeName}" itemValue="#{list.id}" />
+                                </h:selectOneMenu>
+                                <f:facet name="footer">
+                                    <p:commandButton style="margin-left: 262px" id="btn" value="#{'Crear'}" ajax="false" action="#{productController.grabarProduct()}"/>
+                                </f:facet>
 
-                        </p:panelGrid>
+                            </p:panelGrid>
+                        </div>
                     </p:panel>
                 </h:form>
             </ui:define>
@@ -37,4 +37,3 @@
 
     </h:body>
 </html>
-

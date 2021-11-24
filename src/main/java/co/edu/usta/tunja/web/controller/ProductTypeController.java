@@ -10,6 +10,7 @@ import co.edu.usta.tunja.supermarket.persistence.entity.ProductTypeEntity;
 import co.edu.usta.tunja.web.utility.Forms;
 import co.edu.usta.tunja.web.utility.Mensajes;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.el.ELContext;
 import javax.enterprise.context.RequestScoped;
@@ -67,7 +68,7 @@ public class ProductTypeController {
             //detalle = ResourceBundle.getBundle("/co/edu/usta/tunja/web/utility/txtsupermarket").getString(texto);
             getFacade().grabar(this._objActual);
             Mensajes.exito(texto, "Exito");
-            return "crear";
+            return "listar";
         } catch (Exception e)
         {
             texto = "Error";
@@ -78,16 +79,50 @@ public class ProductTypeController {
         }
     }
 
-    public String eliminarProductType(ProductTypeEntity registros) {
-        String texto, detalle;
+    public String cargarID(Integer id) {
+        _objActual = getFacade().buscar(id);
+        Map<String, Object> sesionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        sesionMap.put("productType", _objActual);
+        return "actualizar";
+    }
+
+    public String actualizarProductType() {
+
+        String texto, detail;
         try
         {
-            texto="eliminar";
-            getFacade().borrar(registros);
-            Mensajes.exito(texto, "Eliminado");
+            texto = "Actualizado con exito";
+
+            detail = "Actualizado";
+            Map<String, Object> sesionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+            _objActual.setId(((ProductTypeEntity) sesionMap.get("productType")).getId());
+            getFacade().actualizar(_objActual);
+            Mensajes.exito(texto, detail);
             return "listar";
         } catch (Exception e)
         {
+            texto = "Error";
+            detail = "Error";
+            Mensajes.error(texto, detail);
+            return "actualizar";
+        }
+    }
+
+    public String deleteProductType(ProductTypeEntity productTypeEntity) {
+        this._objActual = productTypeEntity;
+        String text, detail;
+        try
+        {
+            text = "Eliminado con exito";
+            detail = "Eliminado";
+            Mensajes.exito(text, detail);
+            getFacade().borrar(this._objActual);
+            return "listar";
+        } catch (Exception e)
+        {
+            text = "No puede ser eliminado";
+            detail = e.getMessage();
+            Mensajes.error(text, detail);
             return "listar";
         }
     }

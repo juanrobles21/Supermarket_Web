@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/plantilla.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <p:panel>
+                        <div style="margin-left: 484px">
+                            <p:panelGrid columns="2">
+                                <f:facet name="header">#{'Actualizar Tax'}</f:facet>
+                                <p:outputLabel value="#{'Nombre'}" for="nom"></p:outputLabel>
+                                <p:inputText id="nom" rendered="true" requiredMessage="Nombre del impuesto es obligatorio" value="#{taxController.campo.taxName}"/>
+                                <p:outputLabel value="#{'Valor'}" for="nom"></p:outputLabel>
+                                <p:inputText id="value" rendered="true" requiredMessage="Valor del impuesto es obligatorio" value="#{taxController.campo.taxValue}"/>
+                                <p:outputLabel value="#{'Fecha'}" for="nom"></p:outputLabel>
+                                <p:calendar id="fecha" value="#{taxController.campo.creationDate}" pattern="dd/MM/yyyy"/>                            
+                                <f:facet name="footer">
+                                    <p:commandButton style="margin-left: 110px" id="btn" value="Actualizar" ajax="false" action="#{taxController.actualizarTax()}"/>
+                                </f:facet>
+
+                            </p:panelGrid>
+                        </div>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+        <br />
+
+    </h:body>
+</html>

@@ -12,25 +12,22 @@
         <ui:composition template="/plantilla.xhtml">
             <ui:define name="content">
                 <h:form>
-                    <p:growl id="mensajes" sticky="true"/>
-                    <p:breadCrumb>
-                        <p:menuitem class="nav_bar" value="Inicio" icon="fa fa-home" action="/index.xhtml"/>
-                    </p:breadCrumb>
-                    <br/>
                     <p:panel>
-                        <p:panelGrid columns="2">
-                            <f:facet name="header">#{'Crear Inpuesto'}</f:facet>
-                            <p:outputLabel value="#{'Nombre'}" for="nom"></p:outputLabel>
-                            <p:inputText id="nom" rendered="true" requiredMessage="Nombre del impuesto es obligatorio" value="#{taxController.campo.taxName}"/>
-                            <p:outputLabel value="#{'Valor'}" for="nom"></p:outputLabel>
-                            <p:inputText id="value" rendered="true" requiredMessage="Valor del impuesto es obligatorio" value="#{taxController.campo.taxValue}"/>
-                            <p:outputLabel value="#{'Fecha'}" for="nom"></p:outputLabel>
-                            <p:calendar id="fecha" value="#{taxController.campo.creationDate}" pattern="dd/MM/yyyy"/>                            
-                            <f:facet name="footer">
-                                <p:commandButton id="btn" value="#{'Crear'}" ajax="false" action="#{taxController.grabarTax()}"/>
-                            </f:facet>
+                        <div style="margin-left: 484px">
+                            <p:panelGrid columns="2">
+                                <f:facet name="header">#{'Crear Tax'}</f:facet>
+                                <p:outputLabel value="#{'Nombre'}" for="nom"></p:outputLabel>
+                                <p:inputText id="nom" rendered="true" requiredMessage="Nombre del impuesto es obligatorio" value="#{taxController.campo.taxName}"/>
+                                <p:outputLabel value="#{'Valor'}" for="nom"></p:outputLabel>
+                                <p:inputText id="value" rendered="true" requiredMessage="Valor del impuesto es obligatorio" value="#{taxController.campo.taxValue}"/>
+                                <p:outputLabel value="#{'Fecha'}" for="nom"></p:outputLabel>
+                                <p:calendar id="fecha" value="#{taxController.campo.creationDate}" pattern="dd/MM/yyyy"/>                            
+                                <f:facet name="footer">
+                                    <p:commandButton style="margin-left: 120px" id="btn" value="Crear" ajax="false" action="#{taxController.grabarTax()}"/>
+                                </f:facet>
 
-                        </p:panelGrid>
+                            </p:panelGrid>
+                        </div>
                     </p:panel>
                 </h:form>
             </ui:define>

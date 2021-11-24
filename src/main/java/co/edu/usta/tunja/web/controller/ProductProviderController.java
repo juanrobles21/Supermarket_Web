@@ -10,6 +10,7 @@ import co.edu.usta.tunja.supermarket.persistence.entity.ProductProviderEntity;
 import co.edu.usta.tunja.web.utility.Forms;
 import co.edu.usta.tunja.web.utility.Mensajes;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.el.ELContext;
 import javax.enterprise.context.RequestScoped;
@@ -32,8 +33,26 @@ public class ProductProviderController {
     @EJB
     private ProductProviderFacade _ejbFacade;
     private ProductProviderEntity _objActual;
+    private Integer fkIdProduct;
+    private Integer fkIdProvider;
 
     public ProductProviderController() {
+    }
+
+    public Integer getFkIdProduct() {
+        return fkIdProduct;
+    }
+
+    public void setFkIdProduct(Integer fkIdProduct) {
+        this.fkIdProduct = fkIdProduct;
+    }
+
+    public Integer getFkIdProvider() {
+        return fkIdProvider;
+    }
+
+    public void setFkIdProvider(Integer fkIdProvider) {
+        this.fkIdProvider = fkIdProvider;
     }
 
     public ProductProviderEntity getCampo() {
@@ -64,10 +83,12 @@ public class ProductProviderController {
         try
         {
             texto = "exito";
+            this._objActual.setFkIdProduct(getFkIdProduct());
+            this._objActual.setFkIdProvider(getFkIdProvider());
             //detalle = ResourceBundle.getBundle("/co/edu/usta/tunja/web/utility/txtsupermarket").getString(texto);
             getFacade().grabar(this._objActual);
             Mensajes.exito(texto, "Exito");
-            return "crear";
+            return "listar";
         } catch (Exception e)
         {
             texto = "Error";
@@ -75,6 +96,55 @@ public class ProductProviderController {
             //Mensajes.error(texto, detalle);
             return "crear";
 
+        }
+    }
+
+    public String cargarID(Integer id) {
+        _objActual = getFacade().buscar(id);
+        Map<String, Object> sesionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        sesionMap.put("productProvider", _objActual);
+        return "actualizar";
+    }
+
+    public String actualizarProductProvider() {
+
+        String texto, detail;
+        try
+        {
+            texto = "Actualizado con exito";
+            this._objActual.setFkIdProduct(getFkIdProduct());
+            this._objActual.setFkIdProvider(getFkIdProvider());
+            detail = "Actualizado";
+            Map<String, Object> sesionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+            _objActual.setId(((ProductProviderEntity) sesionMap.get("productProvider")).getId());
+            getFacade().actualizar(_objActual);
+            Mensajes.exito(texto, detail);
+            return "listar";
+        } catch (Exception e)
+        {
+            texto = "Error";
+            detail = "Error";
+            Mensajes.error(texto, detail);
+            return "actualizar";
+        }
+    }
+
+    public String deleteProductProvider(ProductProviderEntity productProviderEntity) {
+        this._objActual = productProviderEntity;
+        String text, detail;
+        try
+        {
+            text = "Eliminado con exito";
+            detail = "Eliminado";
+            Mensajes.exito(text, detail);
+            getFacade().borrar(this._objActual);
+            return "listar";
+        } catch (Exception e)
+        {
+            text = "No puede ser eliminado";
+            detail = e.getMessage();
+            Mensajes.error(text, detail);
+            return "listar";
         }
     }
     //**********Interface Converter *********//

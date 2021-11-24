@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/plantilla.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <p:panel>
+                        <div style="margin-left: 307px">
+                            <p:panelGrid columns="4">
+                                <f:facet name="header">#{'Actualizar Provider'}</f:facet>
+                                <p:outputLabel value="#{'Nombre'}" for="nom"></p:outputLabel>
+                                <p:inputText id="nom" rendered="true" requiredMessage="Nombre de la persona es obligatorio" value="#{providerController.campo.name}" />
+                                <p:outputLabel value="#{'Address'}" for="nom"></p:outputLabel>
+                                <p:inputText id="address" rendered="true" requiredMessage="Email de la persona es obligatorio" value="#{providerController.campo.address}" />
+                                <p:outputLabel value="#{'Phone Number'}" for="nom"></p:outputLabel>
+                                <p:inputText id="phone" rendered="true" requiredMessage="Telefono de la persona es obligatorio" value="#{providerController.campo.phoneNumber}" />
+                                <p:outputLabel value="#{'URL'}" for="nom"></p:outputLabel>
+                                <p:inputText id="url" rendered="true" requiredMessage="DNI de la persona es obligatorio" value="#{providerController.campo.url}" />
+                                <p:outputLabel value="#{'NIT'}" for="nom"></p:outputLabel>
+                                <p:inputText id="nit" rendered="true" requiredMessage="Nombre de la persona es obligatorio" value="#{providerController.campo.nit}" />
+                                <f:facet name="footer">
+                                    <p:commandButton style="margin-left: 296px" id="btn" value="Actualizar" ajax="false" action="#{providerController.actualizarProvider()}"/>
+                                </f:facet>
+                            </p:panelGrid>
+                        </div>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+        <br />
+
+    </h:body>
+</html>

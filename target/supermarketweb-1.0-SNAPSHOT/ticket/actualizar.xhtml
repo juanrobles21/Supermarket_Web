@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/plantilla.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <p:panel>
+                        <div style="margin-left: 230px">
+                            <p:panelGrid columns="4">
+                                <f:facet name="header">#{'Actualizar Ticket'}</f:facet>
+                                <p:outputLabel value="#{'Ticket Date'}" for="nom"></p:outputLabel>
+                                <p:calendar id="nom" value="#{ticketController.campo.ticketDate}" pattern="dd/MM/yyyy"/>                            
+                                <p:outputLabel value="#{'Half payment'}" for="nom"></p:outputLabel>
+                                <p:inputText id="halfpayment" rendered="true" requiredMessage="DNI de la persona es obligatorio" value="#{ticketController.campo.paidValue}" />           
+                                <p:outputLabel value="Fk Person Cashier" for="@next"/>
+                                <h:selectOneMenu  value="#{ticketController.fkIdPersonCashier}" id="PersonCashier">
+                                    <f:selectItems value="#{ticketController.ticketListado}" var="list"
+                                                   itemLabel="#{list.personEntityCashier.name}" itemValue="#{list.id}" />
+                                </h:selectOneMenu>
+                                <p:outputLabel value="Fk Person Customer" for="@next"/>
+                                <h:selectOneMenu  value="#{ticketController.fkIdPersonCustomer}" id="PersonCustomer">
+                                    <f:selectItems value="#{ticketController.ticketListado}" var="list"
+                                                   itemLabel="#{list.personEntityCustomer.name}" itemValue="#{list.id}" />
+                                </h:selectOneMenu>
+                                <f:facet name="footer">
+                                    <p:commandButton style="margin-left: 350px"  id="btn" value="Actualizar" ajax="false" action="#{ticketController.actualizarTicket()}"/>
+                                </f:facet>
+                            </p:panelGrid>
+                        </div>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+        <br />
+    </h:body>
+</html>

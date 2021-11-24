@@ -1,12 +1,56 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <ui:composition template="/plantilla.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <p:panel>
+                        <div style="margin-left: 220px">
+                            <p:panelGrid columns="4">
+                                <f:facet name="header">#{'Crear Ticket Detail'}</f:facet>
+                                <p:outputLabel value="#{'Amount'}" for="nom"></p:outputLabel>
+                                <p:inputText id="nom" rendered="true" requiredMessage="Cantidad es obligatoria" value="#{ticketDetailController.campo.amount}" />
+                                <p:outputLabel value="#{'Devolution Request'}" for="nom"></p:outputLabel>
+                                <p:calendar id="devolutionRequest" value="#{ticketDetailController.campo.devolutionRequest}" pattern="dd/MM/yyyy"/>   
+                                <p:outputLabel value="#{'Devolution Approved'}" for="nom"></p:outputLabel>
+                                <p:calendar id="devolutionApproved" value="#{ticketDetailController.campo.devolutionApproved}" pattern="dd/MM/yyyy"/>                            
+                                <p:outputLabel value="#{'Decription Devolution'}" for="nom"></p:outputLabel>
+                                <p:inputText id="descriptionDevolution" rendered="true" requiredMessage="Descripcion no es obligatoria" value="#{ticketDetailController.campo.description}" />
+                                <p:outputLabel value="Fk Tax price product" for="@next"/>
+                                <h:selectOneMenu  value="#{ticketDetailController.fkIdTaxPriceProduct}" id="taxPriceProduct">
+                                    <f:selectItems value="#{priceProductController.priceProductListado}" var="listT"
+                                                   itemLabel="#{listT.salePrice}" itemValue="#{listT.id}" />
+                                </h:selectOneMenu>
+                                <p:outputLabel value="Fk Ticket" for="@next"/>
+                                <h:selectOneMenu  value="#{ticketDetailController.fkIdTicket}" id="ticket">
+                                    <f:selectItems value="#{taxController.taxListado}" var="list"
+                                                   itemLabel="#{list.taxValue}" itemValue="#{list.id}" />
+                                </h:selectOneMenu>
+                                <p:outputLabel value="Fk Administrator" for="@next"/>
+                                <h:selectOneMenu  value="#{ticketDetailController.fkIdPersonAdministrator}" id="administrator">
+                                    <f:selectItems value="#{personController.personListado}" var="listA"
+                                                   itemLabel="#{listA.name}" itemValue="#{listA.id}" />
+                                </h:selectOneMenu>
+                                <f:facet name="footer">
+                                    <p:commandButton style="margin-left: 386px" id="btn" value="Crear" ajax="false" action="#{ticketDetailController.grabarTicketDetail()}"/>
+                                </f:facet>
+
+                            </p:panelGrid>
+                        </div>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+        <br />
+
     </h:body>
 </html>
 

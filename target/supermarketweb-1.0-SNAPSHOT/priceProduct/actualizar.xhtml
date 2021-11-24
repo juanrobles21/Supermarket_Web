@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/plantilla.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <p:panel>
+                        <div style="margin-left: 260px">
+                            <p:panelGrid columns="4">
+                                <f:facet name="header">#{'Actualizar Price Product'}</f:facet>
+                                <p:outputLabel value="#{'Sale Price'}" for="nom"></p:outputLabel>
+                                <p:inputText id="nom" rendered="true" requiredMessage="Nombre de la persona es obligatorio" value="#{priceProductController.campo.salePrice}" />
+                                <p:outputLabel value="#{'Shop price'}" for="nom"></p:outputLabel>
+                                <p:inputText id="shopPrice" rendered="true" requiredMessage="Email de la persona es obligatorio" value="#{priceProductController.campo.shopPrice}" />
+                                <p:outputLabel value="#{'Start Date'}" for="nom"></p:outputLabel>
+                                <p:calendar id="startDate" value="#{priceProductController.campo.startDate}" pattern="dd/MM/yyyy"/>                            
+                                <p:outputLabel value="#{'User Update'}" for="nom"></p:outputLabel>
+                                <p:inputText id="userUpdate" rendered="true" requiredMessage="DNI de la persona es obligatorio" value="#{priceProductController.campo.userUpdate}" />
+                                <p:outputLabel value="#{'Date Update'}" for="nom"></p:outputLabel>
+                                <p:calendar id="dateUpdate" value="#{priceProductController.campo.dateUpdate}" pattern="dd/MM/yyyy"/>                            
+                                <p:outputLabel value="Fk Provider" for="@next"/>
+                                <h:selectOneMenu  value="#{priceProductController.fkIdProductProvider}" id="provider">
+                                    <f:selectItems value="#{providerController.providerListado}" var="list"
+                                                   itemLabel="#{list.name}" itemValue="#{list.id}" />
+                                </h:selectOneMenu><f:facet name="footer">
+                                    <p:commandButton style="margin-left: 345px" id="btn" value="#{'Actualizar'}" ajax="false" action="#{priceProductController.actualizarPriceProduct()}"/>
+                                </f:facet>
+
+                            </p:panelGrid>
+                        </div>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+        <br />
+
+    </h:body>
+</html>
+

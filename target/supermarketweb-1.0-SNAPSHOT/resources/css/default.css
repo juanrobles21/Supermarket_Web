@@ -5,6 +5,9 @@ body {
     color: #000000;  
     margin: 10px;
 }
+body .ui-panelgrid .ui-panelgrid-cell {
+    border: none;
+}    
 body .ui-button{
     margin-left: 100px;
     background: #045491;

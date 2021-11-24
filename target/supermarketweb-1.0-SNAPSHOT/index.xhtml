@@ -13,41 +13,43 @@
                 <h:form>
                     <p:growl id="mensajes" sticky="true"/>
                     <p:breadCrumb>
-                        <p:menuitem class="nav_bar" value="Inicio" icon="fa fa-home" action="/index.xhtml"/>
+                        <p:menuitem class="nav_bar" value="Inicio" icon="fa fa-home" action="faces/index.xhtml"/>
                     </p:breadCrumb>
                     <p:panel>
-                        <p:panelGrid columns="6">
-                            <p:outputLabel style="padding: 43px" value="#{'Person'}"/>
-                            <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="person/listar"/>
-                            <p:outputLabel  value="#{'Person person Type'}"/>
-                            <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="personPersonType/listar"/>
-                            <p:outputLabel style="padding: 19px"  value="#{'Person Type'}"/>
-                            <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="personType/listar"/>
-                        </p:panelGrid>
-                        <p:panelGrid columns="6">
-                            <p:outputLabel style="padding: 17px" value="#{'Price Product'}"/>
-                            <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="priceProduct/listar"/>
-                            <p:outputLabel style="padding: 46.6px" value="#{'Product'}"/>
-                            <p:button style="margin-left: 1px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="product/listar"/>
-                            <p:outputLabel value="#{'Product Provider'}"/>
-                            <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="productProvider/listar"/>
-                        </p:panelGrid>
-                        <p:panelGrid columns="6">
-                            <p:outputLabel style="padding: 17px" value="#{'Product Type'}"/>
-                            <p:button style="margin-left: 1px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="productType/listar"/>
-                            <p:outputLabel style="padding: 44px" value="#{'Provider'}"/>
-                            <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="provider/listar"/>
-                            <p:outputLabel style="padding: 53px" value="#{'Tax'}"/>
-                            <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="tax/listar"/>
-                        </p:panelGrid>
-                        <p:panelGrid columns="6">
-                            <p:outputLabel  value="#{'Tax Price Product'}"/>
-                            <p:button style="margin-left: 1px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="taxPriceProduct/listar"/>
-                            <p:outputLabel style="padding: 28px" value="#{'Ticket Detail'}"/>
-                            <p:button style="margin-left: 1px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="ticketDetail/listar"/>
-                            <p:outputLabel style="padding: 43px" value="#{'Ticket'}"/>
-                            <p:button style="margin-left: 1px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="ticket/listar"/>
-                        </p:panelGrid>
+                        <div style="margin-left: 305px">
+                            <p:panelGrid columns="6">
+                                <p:outputLabel style="padding: 43px" value="#{'Person'}"/>
+                                <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="person/listar"/>
+                                <p:outputLabel  value="#{'Person person Type'}"/>
+                                <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="personPersonType/listar"/>
+                                <p:outputLabel style="padding: 19px"  value="#{'Person Type'}"/>
+                                <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="personType/listar"/>
+                            </p:panelGrid>
+                            <p:panelGrid columns="6">
+                                <p:outputLabel style="padding: 17px" value="#{'Price Product'}"/>
+                                <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="priceProduct/listar"/>
+                                <p:outputLabel style="padding: 46.6px" value="#{'Product'}"/>
+                                <p:button style="margin-left: 1px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="product/listar"/>
+                                <p:outputLabel value="#{'Product Provider'}"/>
+                                <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="productProvider/listar"/>
+                            </p:panelGrid>
+                            <p:panelGrid columns="6">
+                                <p:outputLabel style="padding: 17px" value="#{'Product Type'}"/>
+                                <p:button style="margin-left: 1px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="productType/listar"/>
+                                <p:outputLabel style="padding: 44px" value="#{'Provider'}"/>
+                                <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="provider/listar"/>
+                                <p:outputLabel style="padding: 53px" value="#{'Tax'}"/>
+                                <p:button style="margin-left: 0px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="tax/listar"/>
+                            </p:panelGrid>
+                            <p:panelGrid columns="6">
+                                <p:outputLabel  value="#{'Tax Price Product'}"/>
+                                <p:button style="margin-left: 1px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="taxPriceProduct/listar"/>
+                                <p:outputLabel style="padding: 28px" value="#{'Ticket Detail'}"/>
+                                <p:button style="margin-left: 1px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="ticketDetail/listar"/>
+                                <p:outputLabel style="padding: 43px" value="#{'Ticket'}"/>
+                                <p:button style="margin-left: 1px" icon="pi pi-search" styleClass="rounded-button ui-button-success ui-button-flat" outcome="ticket/listar"/>
+                            </p:panelGrid>
+                        </div>
                     </p:panel>
                 </h:form>
             </ui:define>

@@ -10,6 +10,7 @@ import co.edu.usta.tunja.supermarket.persistence.entity.PersonEntity;
 import co.edu.usta.tunja.web.utility.Forms;
 import co.edu.usta.tunja.web.utility.Mensajes;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.el.ELContext;
 import javax.enterprise.context.RequestScoped;
@@ -64,18 +65,64 @@ public class PersonController {
         String texto, detalle;
         try
         {
-            texto = "exito";
+            texto = "Creado con exito";
             //detalle = ResourceBundle.getBundle("/co/edu/usta/tunja/web/utility/txtsupermarket").getString(texto);
             getFacade().grabar(this._objActual);
             Mensajes.exito(texto, "Exito");
-            return "crear";
+            return "listar";
         } catch (Exception e)
         {
             texto = "Error";
             e.printStackTrace();
-            //Mensajes.error(texto, detalle);
+            Mensajes.error(texto, "Error");
             return "crear";
 
+        }
+    }
+    public String cargarID(Integer id) {
+        _objActual = getFacade().buscar(id);
+        Map<String, Object> sesionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        sesionMap.put("person", _objActual);
+        return "actualizar";
+    }
+
+    public String actualizarPerson() {
+
+        String texto, detail;
+        try
+        {
+            texto = "Actualizado con exito";
+            detail = "Actualizado";
+            Map<String, Object> sesionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+            _objActual.setId(((PersonEntity) sesionMap.get("person")).getId());
+            getFacade().actualizar(_objActual);
+            Mensajes.exito(texto, detail);
+            return "listar";
+        } catch (Exception e)
+        {
+            texto = "Error";
+            detail = "Error";
+            Mensajes.error(texto, detail);
+            return "actualizar";
+        }
+    }
+
+    public String deletePerson(PersonEntity personEntity) {
+        this._objActual = personEntity;
+        String text, detail;
+        try
+        {
+            text = "Eliminado con exito";
+            detail = "Eliminado";
+            Mensajes.exito(text, detail);
+            getFacade().borrar(this._objActual);
+            return "listar";
+        } catch (Exception e)
+        {
+            text = "No puede ser eliminado";
+            detail = e.getMessage();
+            Mensajes.error(text, detail);
+            return "listar";
         }
     }
     //**********Interface Converter *********//

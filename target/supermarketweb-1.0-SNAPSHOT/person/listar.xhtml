@@ -8,7 +8,7 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-     <h:body>
+    <h:body>
         <ui:composition template="/plantilla.xhtml">
             <ui:define name="content">
                 <h:form>
@@ -45,10 +45,9 @@
                             </p:column>
                             <p:column style="width: 20%">
                                 <f:facet name="header">Acción</f:facet>
-                                <p:commandButton style="margin-left: 0px" id="btn" value="#{'Actualizar'}" ajax="false" action="#{productTypeController.grabarProductType()}"/>
-                                <p:commandButton style="margin-left: 0px" type="button" value="Eliminar" ajax="false" styleClass="ui-button-danger" action="#{productTypeController.eliminarProductType(registros.id)}" />
+                                <p:commandButton style="margin-left: 0px" id="btn" value="Actualizar" ajax="false" action="#{personController.cargarID(registros.id)}"/>
+                                <p:commandButton style="margin-left: 0px" type="btn" value="Eliminar" ajax="false" styleClass="ui-button-danger" action="#{personController.deletePerson(registros)}"/>
                             </p:column>
-
                         </p:dataTable>
                     </p:panel>
                 </h:form>
@@ -58,4 +57,3 @@
 
     </h:body>
 </html>
-

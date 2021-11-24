@@ -10,6 +10,7 @@ import co.edu.usta.tunja.supermarket.persistence.entity.TicketEntity;
 import co.edu.usta.tunja.web.utility.Forms;
 import co.edu.usta.tunja.web.utility.Mensajes;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.el.ELContext;
 import javax.enterprise.context.RequestScoped;
@@ -32,8 +33,26 @@ public class TicketController {
     @EJB
     private TicketFacade _ejbFacade;
     private TicketEntity _objActual;
+    private Integer fkIdPersonCustomer;
+    private Integer fkIdPersonCashier;
 
     public TicketController() {
+    }
+
+    public Integer getFkIdPersonCustomer() {
+        return fkIdPersonCustomer;
+    }
+
+    public void setFkIdPersonCustomer(Integer fkIdPersonCustomer) {
+        this.fkIdPersonCustomer = fkIdPersonCustomer;
+    }
+
+    public Integer getFkIdPersonCashier() {
+        return fkIdPersonCashier;
+    }
+
+    public void setFkIdPersonCashier(Integer fkIdPersonCashier) {
+        this.fkIdPersonCashier = fkIdPersonCashier;
     }
 
     public TicketEntity getCampo() {
@@ -64,10 +83,12 @@ public class TicketController {
         try
         {
             texto = "exito";
+            this._objActual.setFkIdPersonCustomer(getFkIdPersonCustomer());
+            this._objActual.setFkIdPersonCashier(getFkIdPersonCashier());
             //detalle = ResourceBundle.getBundle("/co/edu/usta/tunja/web/utility/txtsupermarket").getString(texto);
             getFacade().grabar(this._objActual);
             Mensajes.exito(texto, "Exito");
-            return "crear";
+            return "listar";
         } catch (Exception e)
         {
             texto = "Error";
@@ -75,6 +96,54 @@ public class TicketController {
             //Mensajes.error(texto, detalle);
             return "crear";
 
+        }
+    }
+
+    public String cargarID(Integer id) {
+        _objActual = getFacade().buscar(id);
+        Map<String, Object> sesionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        sesionMap.put("ticket", _objActual);
+        return "actualizar";
+    }
+
+    public String actualizarTicket() {
+        String texto, detail;
+        try
+        {
+            texto = "Actualizado con exito";
+            this._objActual.setFkIdPersonCustomer(getFkIdPersonCustomer());
+            this._objActual.setFkIdPersonCashier(getFkIdPersonCashier());
+            detail = "Actualizado";
+            Map<String, Object> sesionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+            _objActual.setId(((TicketEntity) sesionMap.get("ticket")).getId());
+            getFacade().actualizar(_objActual);
+            Mensajes.exito(texto, detail);
+            return "listar";
+        } catch (Exception e)
+        {
+            texto = "Error";
+            detail = "Error";
+            Mensajes.error(texto, detail);
+            return "actualizar";
+        }
+    }
+
+    public String deleteTicket(TicketEntity ticketEntity) {
+        this._objActual = ticketEntity;
+        String text, detail;
+        try
+        {
+            text = "Eliminado con exito";
+            detail = "Eliminado";
+            Mensajes.exito(text, detail);
+            getFacade().borrar(this._objActual);
+            return "listar";
+        } catch (Exception e)
+        {
+            text = "No puede ser eliminado";
+            detail = e.getMessage();
+            Mensajes.error(text, detail);
+            return "listar";
         }
     }
     //**********Interface Converter *********//

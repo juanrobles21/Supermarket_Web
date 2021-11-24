@@ -5,9 +5,12 @@ co\edu\usta\tunja\web\utility\Mensajes.class
 co\edu\usta\tunja\web\controller\ProductProviderController.class
 co\edu\usta\tunja\web\controller\PersonTypeController.class
 co\edu\usta\tunja\web\controller\TaxPriceProductController.class
+co\edu\usta\tunja\web\controller\TicketController$TicketControllerConverter.class
 co\edu\usta\tunja\web\controller\PriceProductController$PriceProductControllerConverter.class
 co\edu\usta\tunja\web\supermarketweb\resources\JavaEE8Resource.class
 co\edu\usta\tunja\web\controller\ProviderController.class
+co\edu\usta\tunja\web\controller\ProductController$ProductTypeControllerConverter.class
+co\edu\usta\tunja\web\controller\TicketController.class
 co\edu\usta\tunja\web\controller\TaxController$TaxControllerConverter.class
 co\edu\usta\tunja\web\controller\TaxController.class
 co\edu\usta\tunja\web\controller\ProductProviderController$ProductProviderControllerConverter.class
@@ -21,6 +24,5 @@ co\edu\usta\tunja\web\controller\PersonTypeController$PersonTypeControllerConver
 co\edu\usta\tunja\web\controller\TicketDetailController$TicketDetailControllerConverter.class
 co\edu\usta\tunja\web\controller\ProviderController$ProviderControllerConverter.class
 co\edu\usta\tunja\web\controller\PersonController.class
-co\edu\usta\tunja\web\controller\ProductController$ProductControllerConverter.class
 co\edu\usta\tunja\web\supermarketweb\JAXRSConfiguration.class
 co\edu\usta\tunja\web\utility\Forms.class

@@ -12,29 +12,26 @@
         <ui:composition template="/plantilla.xhtml">
             <ui:define name="content">
                 <h:form>
-                    <p:growl id="mensajes" sticky="true"/>
-                    <p:breadCrumb>
-                        <p:menuitem class="nav_bar" value="Inicio" icon="fa fa-home" action="/index.xhtml"/>
-                    </p:breadCrumb>
-                    <br/>
                     <p:panel>
-                        <p:panelGrid columns="4">
-                            <f:facet name="header">#{'Crear Provider'}</f:facet>
-                            <p:outputLabel value="#{'Nombre'}" for="nom"></p:outputLabel>
-                            <p:inputText id="nom" rendered="true" requiredMessage="Nombre de la persona es obligatorio" value="#{providerController.campo.name}" />
-                            <p:outputLabel value="#{'Address'}" for="nom"></p:outputLabel>
-                            <p:inputText id="address" rendered="true" requiredMessage="Email de la persona es obligatorio" value="#{providerController.campo.address}" />
-                            <p:outputLabel value="#{'Phone Number'}" for="nom"></p:outputLabel>
-                            <p:inputText id="phone" rendered="true" requiredMessage="Telefono de la persona es obligatorio" value="#{providerController.campo.phoneNumber}" />
-                            <p:outputLabel value="#{'URL'}" for="nom"></p:outputLabel>
-                            <p:inputText id="url" rendered="true" requiredMessage="DNI de la persona es obligatorio" value="#{providerController.campo.url}" />
-                            <p:outputLabel value="#{'NIT'}" for="nom"></p:outputLabel>
-                            <p:inputText id="nit" rendered="true" requiredMessage="Nombre de la persona es obligatorio" value="#{providerController.campo.nit}" />
-                            <f:facet name="footer">
-                                <p:commandButton  id="btn" value="#{'Crear'}" ajax="false" action="#{providerController.grabarProvider()}"/>
-                            </f:facet>
+                        <div style="margin-left: 307px">
+                            <p:panelGrid columns="4">
+                                <f:facet name="header">#{'Crear Provider'}</f:facet>
+                                <p:outputLabel value="#{'Nombre'}" for="nom"></p:outputLabel>
+                                <p:inputText id="nom" rendered="true" requiredMessage="Nombre de la persona es obligatorio" value="#{providerController.campo.name}" />
+                                <p:outputLabel value="#{'Address'}" for="nom"></p:outputLabel>
+                                <p:inputText id="address" rendered="true" requiredMessage="Email de la persona es obligatorio" value="#{providerController.campo.address}" />
+                                <p:outputLabel value="#{'Phone Number'}" for="nom"></p:outputLabel>
+                                <p:inputText id="phone" rendered="true" requiredMessage="Telefono de la persona es obligatorio" value="#{providerController.campo.phoneNumber}" />
+                                <p:outputLabel value="#{'URL'}" for="nom"></p:outputLabel>
+                                <p:inputText id="url" rendered="true" requiredMessage="DNI de la persona es obligatorio" value="#{providerController.campo.url}" />
+                                <p:outputLabel value="#{'NIT'}" for="nom"></p:outputLabel>
+                                <p:inputText id="nit" rendered="true" requiredMessage="Nombre de la persona es obligatorio" value="#{providerController.campo.nit}" />
+                                <f:facet name="footer">
+                                    <p:commandButton style="margin-left: 305px" id="btn" value="Crear" ajax="false" action="#{providerController.grabarProvider()}"/>
+                                </f:facet>
 
-                        </p:panelGrid>
+                            </p:panelGrid>
+                        </div>
                     </p:panel>
                 </h:form>
             </ui:define>
